@@ -82,10 +82,20 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'test.sqlite3'),
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'test.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql-psycopg2',
+        'NAME': 'contest',
+        'USER': 'develop',
+        'PASSWORD': 'qwerty12+',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
