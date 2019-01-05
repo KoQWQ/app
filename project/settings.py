@@ -25,7 +25,7 @@ SECRET_KEY = 'qvch%u1opqfx2+c9k!b63(3aok2@968ag#!gc$dd=0k*3(car3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://belzik.webfactional.com/']
+ALLOWED_HOSTS = ['http://belzik.webfactional.com/', 'localhost']
 
 
 # Application definition
@@ -37,7 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authorization'
+    'rest_framework',
+    #'rest_registration',
+    'drf_yasg',
+    #'rest_framework_docs',
+    # 'redocs',
+    # 'drf_autodocs',
+    'rest_framework_swagger',
+    #'authorization',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +128,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #AUTH_USER_MODEL = 'authorization.User'
+
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated', )
+# }
+
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': False,
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://frontend-url/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+}
