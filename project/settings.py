@@ -25,7 +25,7 @@ SECRET_KEY = 'qvch%u1opqfx2+c9k!b63(3aok2@968ag#!gc$dd=0k*3(car3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://belzik.webfactional.com/', 'localhost']
+ALLOWED_HOSTS = ['http://belzik.webfactional.com/', '*']
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # 'drf_autodocs',
     'rest_framework_swagger',
     #'authorization',
-    'api'
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql-psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'contest',
         'USER': 'develop',
         'PASSWORD': 'qwerty12+',
@@ -160,3 +160,17 @@ REST_REGISTRATION = {
     'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
     'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
 }
+
+STATIC_URL = 'http://belzik.webfactional.com/static/'
+STATIC_ROOT = '/home/belzik/webapps/static'
+
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, '/static'),
+#)
+STATICFILES_DIRS = ('/home/belzik/webapps/static',)
+
+STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder', 'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
+#STATIC_ROOT = BASE_DIR + '/static_root/'
+
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, '/static/'),)
+#STATICFILES_DIRS = ('/home/belzik/webapps/judge_app/app/static',)

@@ -28,6 +28,8 @@ from rest_framework.views import APIView
 from rest_framework_swagger import renderers
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.conf import settings
+from django.conf.urls import static
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -59,7 +61,7 @@ class SwaggerSchemaView(APIView):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('rest_registration.api.urls')),
+    #path('accounts/', include('rest_registration.api.urls')),
     path('api/', include('api.urls')),
     #path('swagger/', SwaggerSchemaView.as_view()),
     # path('swagger2(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
@@ -71,5 +73,6 @@ urlpatterns = [
     #url(r'^docs/', include('rest_framework_docs.urls'))
     #path('docss/', include('rest_framework_docs.urls')),
 ]
+#urlpatterns = (urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
 
 admin.site.site_header = 'Администрирование Judge_App'
