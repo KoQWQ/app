@@ -1,0 +1,24 @@
+{
+  "name": "judge_app",
+  "version": "1.0.0",
+  "description": "Application",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoQWQ/app.git"
+  },
+  "keywords": [
+    "app"
+  ],
+  "author": "Ol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KoQWQ/app/issues"
+  },
+  "homepage": "https://github.com/KoQWQ/app#readme"
+}

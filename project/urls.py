@@ -15,12 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework_swagger.views import get_swagger_view
-#import rest_framework_swagger.urls
-#from rest_framework_docs import urls as rest_api__urls
-
-# schema_view = get_swagger_view(title='Описание API')
-
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.schemas import SchemaGenerator
@@ -28,6 +22,9 @@ from rest_framework.views import APIView
 from rest_framework_swagger import renderers
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from . import views
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -46,7 +43,6 @@ schema_view = get_schema_view(
 class SwaggerSchemaView(APIView):
     permission_classes = [AllowAny]
     renderer_classes = [
-        # renderers.CoreJSONRenderer,
         renderers.OpenAPIRenderer,
         renderers.SwaggerUIRenderer
     ]
@@ -58,18 +54,14 @@ class SwaggerSchemaView(APIView):
         return Response(schema)
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('accounts/', include('rest_registration.api.urls')),
     path('api/', include('api.urls')),
-    #path('swagger/', SwaggerSchemaView.as_view()),
-    # path('swagger2(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    # path('token-auth/', obtain_jwt_token),
+    path('auth/', include('auth_user.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api-doc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    # path('redocs/', include('redocs.urls')),
-    #path('docs/', include('rest_framework_docs.urls')),
-    #path('docs/', rest_api__urls.as_view()),
-    #url(r'^docs/', include('rest_framework_docs.urls'))
-    #path('docss/', include('rest_framework_docs.urls')),
 ]
 
 admin.site.site_header = 'Администрирование Judge_App'

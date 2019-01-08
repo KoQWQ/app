@@ -32,6 +32,7 @@ class Competition(models.Model):
         verbose_name='Тип конкурса'
     )
     date = models.DateTimeField(verbose_name='Дата проведения конкурса')
+    cost = models.PositiveIntegerField(default=0, verbose_name='Стоимость участия')
 
     class Meta:
     	verbose_name = 'Конкурс'
