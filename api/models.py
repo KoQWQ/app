@@ -19,10 +19,10 @@ GENDER_TYPES = (
 	('FEMALE', 'Женский')
 )
 
-USER_TYPES = (
-    ('JUDGE', 'Судья'),
-    ('OBSERVER', 'Наблюдатель')
-)
+# USER_TYPES = (
+#     ('JUDGE', 'Судья'),
+#     ('OBSERVER', 'Наблюдатель')
+# )
 
 class Competition(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название конкурса')
