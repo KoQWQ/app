@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 
+
 COMPETITION_TYPES = (
     ('PAIR_CONTEST', 'Парный конкурс'),
     ('ASSOCIATION_COMPETITION', 'Конкурс-ассоциации'),
@@ -42,22 +43,22 @@ class Competition(models.Model):
         return self.name
 
 
-class Judge(models.Model):
-    surname = models.CharField(max_length=50, verbose_name='Фамилия')
-    name = models.CharField(max_length=50, verbose_name='Имя')
-    middlename = models.CharField(max_length=50, blank=True, verbose_name='Отчество')
-    email = models.CharField(max_length=50, verbose_name='Почтовый адрес')
-    user_type = models.CharField(
-        max_length=50,
-        choices=USER_TYPES,
-        default='JUDGE',
-        verbose_name='Тип пользователя'
-    )
-    competition = models.ManyToManyField(Competition, blank=True, verbose_name='Конкурсы, в которых он является судьей')
+# class Judge(models.Model):
+#     surname = models.CharField(max_length=50, verbose_name='Фамилия')
+#     name = models.CharField(max_length=50, verbose_name='Имя')
+#     middlename = models.CharField(max_length=50, blank=True, verbose_name='Отчество')
+#     email = models.CharField(max_length=50, verbose_name='Почтовый адрес')
+#     user_type = models.CharField(
+#         max_length=50,
+#         choices=USER_TYPES,
+#         default='JUDGE',
+#         verbose_name='Тип пользователя'
+#     )
+#     competition = models.ManyToManyField(Competition, blank=True, verbose_name='Конкурсы, в которых он является судьей')
 
-    class Meta:
-    	verbose_name = 'Судья'
-    	verbose_name_plural = 'Судьи'
+#     class Meta:
+#     	verbose_name = 'Судья'
+#     	verbose_name_plural = 'Судьи'
 
 
 class Participant(models.Model):

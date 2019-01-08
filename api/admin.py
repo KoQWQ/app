@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Competition, Judge, Participant, Round, Entry
+from .models import Competition, Participant, Round, Entry
 
 
 class CompetitionAdmin(admin.ModelAdmin):
@@ -26,7 +26,6 @@ class EntryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Competition, CompetitionAdmin)
-admin.site.register(Judge)
 admin.site.register(Participant, ParticipantAdmin)
 admin.site.register(Round, RoundAdmin)
 admin.site.register(Entry, EntryAdmin)
