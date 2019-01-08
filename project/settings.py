@@ -25,7 +25,7 @@ SECRET_KEY = 'qvch%u1opqfx2+c9k!b63(3aok2@968ag#!gc$dd=0k*3(car3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://belzik.webfactional.com/', 'localhost']
+ALLOWED_HOSTS = ['http://belzik.webfactional.com/', '*']
 
 
 # Application definition
@@ -152,3 +152,8 @@ REST_REGISTRATION = {
     'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
     'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
 }
+
+# try:
+#     from .production_settings import *
+# except:
+#     pass
