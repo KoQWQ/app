@@ -25,27 +25,25 @@ SECRET_KEY = 'qvch%u1opqfx2+c9k!b63(3aok2@968ag#!gc$dd=0k*3(car3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://belzik.webfactional.com/', '*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #system
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #packages
     'rest_framework',
     'rest_framework.authtoken',
-    #'rest_registration',
     'drf_yasg',
-    #'rest_framework_docs',
-    # 'redocs',
-    # 'drf_autodocs',
     'rest_framework_swagger',
-    #'authorization',
+    #project
     'api',
     'auth_user',
 ]
@@ -142,8 +140,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', )
 }
 
 REST_REGISTRATION = {
