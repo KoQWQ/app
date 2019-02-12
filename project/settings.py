@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'rest_framework_swagger',
+    'django_filters',
     #project
     'api',
     'auth_user',

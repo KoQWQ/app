@@ -4,9 +4,9 @@ from rest_framework import routers
 
 
 router = routers.DefaultRouter()
-router.register(r'competitions', CompetitionView)
-router.register(r'participants', ParticipantView)
-router.register(r'rounds', RoundView)
+router.register(r'competitions', CompetitionView, base_name='competitions')
+router.register(r'participants', ParticipantView, base_name='participants')
+router.register(r'rounds', RoundView, base_name='rounds')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

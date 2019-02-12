@@ -10,7 +10,7 @@ class DisplayUser(serializers.ModelSerializer):
 	def to_representation(self, instance):
 		data = {}
 		data['id'] = instance.id
-		data['full_name'] = instance.get_full_name()
+		data['full_name'] = '{} {}'.format(instance.surname, instance.name)
 		return data
 
 class CompetitionSerializer(serializers.ModelSerializer):
