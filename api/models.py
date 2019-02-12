@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
 
-
 COMPETITION_TYPES = (
     ('PAIR_CONTEST', 'Парный конкурс'),
     ('ASSOCIATION_COMPETITION', 'Конкурс-ассоциации'),
@@ -24,6 +23,30 @@ GENDER_TYPES = (
 #     ('OBSERVER', 'Наблюдатель')
 # )
 
+class Participant(models.Model):
+    surname = models.CharField(max_length=50, verbose_name='Фамилия')
+    name = models.CharField(max_length=50, verbose_name='Имя')
+    gender = models.CharField(
+        max_length=50,
+        choices=GENDER_TYPES,
+        default='MALE',
+        verbose_name='Пол'
+    )
+    payment = models.BooleanField(default=False, verbose_name='Оплата внесена')
+    city = models.CharField(max_length=50, verbose_name='Город')
+    school_name = models.CharField(max_length=50, verbose_name='Название школы')
+    number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Место в конкурсе')
+    score = models.PositiveIntegerField(default=0, verbose_name='Количество набранных участником баллов')
+    # competition = models.ForeignKey(Competition, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Конкурс')
+
+    class Meta:
+        verbose_name = 'Участник'
+        verbose_name_plural = 'Участники'
+
+
+    def __str__(self):
+        return '{} {}'.format(self.surname, self.name)
+
 class Competition(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название конкурса')
     type = models.CharField(
@@ -34,6 +57,7 @@ class Competition(models.Model):
     )
     date = models.DateTimeField(verbose_name='Дата проведения конкурса')
     cost = models.PositiveIntegerField(default=0, verbose_name='Стоимость участия')
+    participants = models.ManyToManyField(Participant, blank=True, verbose_name='Участники конкурса', related_name="users")
 
     class Meta:
     	verbose_name = 'Конкурс'
@@ -59,31 +83,6 @@ class Competition(models.Model):
 #     class Meta:
 #     	verbose_name = 'Судья'
 #     	verbose_name_plural = 'Судьи'
-
-
-class Participant(models.Model):
-    surname = models.CharField(max_length=50, verbose_name='Фамилия')
-    name = models.CharField(max_length=50, verbose_name='Имя')
-    gender = models.CharField(
-        max_length=50,
-        choices=GENDER_TYPES,
-        default='MALE',
-        verbose_name='Пол'
-    )
-    payment = models.BooleanField(default=False, verbose_name='Оплата внесена')
-    city = models.CharField(max_length=50, verbose_name='Город')
-    school_name = models.CharField(max_length=50, verbose_name='Название школы')
-    number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Место в конкурсе')
-    score = models.PositiveIntegerField(default=0, verbose_name='Количество набранных участником баллов')
-    competition = models.ForeignKey(Competition, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Конкурс')
-
-    class Meta:
-    	verbose_name = 'Участник'
-    	verbose_name_plural = 'Участники'
-
-
-    def __str__(self):
-        return '{} {}'.format(self.surname, self.name)
 
 
 class Round(models.Model):
