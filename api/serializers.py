@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from . models import Competition, Participant, Round
 from auth_user.models import UserAbstract
+import datetime, time
 
 class DisplayUser(serializers.ModelSerializer):
 	class Meta:
@@ -18,7 +19,13 @@ class CompetitionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Competition
-        fields = ('name', 'type', 'date', 'cost', 'display_participants', 'participants',)
+        fields = ('name', 'type', 'date', 'cost', 'display_participants', 'participants', 'judges',)
+
+    def to_representation(self, instance):
+    	data = super(CompetitionSerializer, self).to_representation(instance)
+    	data.update(date=time.mktime(instance.date.timetuple()) * 1000)
+    	return data
+    	#import pdb; pdb.set_trace()
 
 
 class ParticipantSerializer(serializers.ModelSerializer):

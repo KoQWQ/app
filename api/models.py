@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from project.settings import AUTH_USER_MODEL
 
 COMPETITION_TYPES = (
     ('PAIR_CONTEST', 'Парный конкурс'),
@@ -35,9 +36,9 @@ class Participant(models.Model):
     payment = models.BooleanField(default=False, verbose_name='Оплата внесена')
     city = models.CharField(max_length=50, verbose_name='Город')
     school_name = models.CharField(max_length=50, verbose_name='Название школы')
-    number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Место в конкурсе')
+    place_in_competition = models.PositiveIntegerField(blank=True, null=True, verbose_name='Место в конкурсе')
     score = models.PositiveIntegerField(default=0, verbose_name='Количество набранных участником баллов')
-    # competition = models.ForeignKey(Competition, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Конкурс')
+    number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Номер участника в конкурсе')
 
     class Meta:
         verbose_name = 'Участник'
@@ -58,6 +59,7 @@ class Competition(models.Model):
     date = models.DateTimeField(verbose_name='Дата проведения конкурса')
     cost = models.PositiveIntegerField(default=0, verbose_name='Стоимость участия')
     participants = models.ManyToManyField(Participant, blank=True, verbose_name='Участники конкурса', related_name="users")
+    judges = models.ManyToManyField(AUTH_USER_MODEL, blank=True, verbose_name='Судьи конкурса', related_name="judges")
 
     class Meta:
     	verbose_name = 'Конкурс'

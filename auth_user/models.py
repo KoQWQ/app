@@ -28,7 +28,6 @@ class UserAbstract(AbstractBaseUser, PermissionsMixin):
         default='JUDGE',
         verbose_name='Тип пользователя'
     )
-    competition = models.ManyToManyField(Competition, blank=True, verbose_name='Конкурсы, в которых он является судьей')
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
