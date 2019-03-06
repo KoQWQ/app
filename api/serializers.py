@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from . models import Competition, Participant, Round
+from . models import Competition, Participant, Round, Entry
 from auth_user.models import UserAbstract
 import datetime, time
+
 
 class DisplayUser(serializers.ModelSerializer):
 	class Meta:
@@ -14,6 +15,7 @@ class DisplayUser(serializers.ModelSerializer):
 		data['full_name'] = '{} {}'.format(instance.surname, instance.name)
 		return data
 
+
 class CompetitionSerializer(serializers.ModelSerializer):
     display_participants = DisplayUser(many=True, read_only=True, source='participants')
 
@@ -25,7 +27,6 @@ class CompetitionSerializer(serializers.ModelSerializer):
     	data = super(CompetitionSerializer, self).to_representation(instance)
     	data.update(date=time.mktime(instance.date.timetuple()) * 1000)
     	return data
-    	#import pdb; pdb.set_trace()
 
 
 class ParticipantSerializer(serializers.ModelSerializer):
@@ -39,4 +40,11 @@ class RoundSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Round
+        fields = '__all__'
+
+
+class EntrySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Entry
         fields = '__all__'

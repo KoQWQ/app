@@ -1,10 +1,7 @@
-from django.shortcuts import render
-
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
-from . models import Competition, Participant, Round
-from . serializers import CompetitionSerializer, ParticipantSerializer, RoundSerializer
+from . models import Competition, Participant, Round, Entry
+from . serializers import CompetitionSerializer, ParticipantSerializer, RoundSerializer, EntrySerializer
 
 
 class CompetitionView(viewsets.ModelViewSet):
@@ -29,6 +26,7 @@ class CompetitionView(viewsets.ModelViewSet):
     """
     permissions = (AllowAny,)
     serializer_class = CompetitionSerializer
+    filterset_fields = '__all__'
     queryset = Competition.objects.all()
 
 
@@ -54,6 +52,7 @@ class ParticipantView(viewsets.ModelViewSet):
     """
     permissions = (AllowAny,)
     serializer_class = ParticipantSerializer
+    filterset_fields = '__all__'
     queryset = Participant.objects.all()
 
 
@@ -79,4 +78,31 @@ class RoundView(viewsets.ModelViewSet):
     """
     permissions = (AllowAny,)
     serializer_class = RoundSerializer
+    filterset_fields = '__all__'
     queryset = Round.objects.all()
+
+
+class EntryView(viewsets.ModelViewSet):
+    """
+    retrieve:
+    Получение одного захода из списка
+
+    create:
+    Создать новый заход
+
+    list:
+    Получить весь список заходов
+
+    update:
+    Изменить информацию о заходе
+
+    partial_update:
+    Изменить информацию о заходе
+
+    delete:
+    Удалить заход
+    """
+    permissions = (AllowAny,)
+    serializer_class = EntrySerializer
+    filterset_fields = '__all__'
+    queryset = Entry.objects.all()

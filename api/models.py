@@ -19,10 +19,6 @@ GENDER_TYPES = (
 	('FEMALE', 'Женский')
 )
 
-# USER_TYPES = (
-#     ('JUDGE', 'Судья'),
-#     ('OBSERVER', 'Наблюдатель')
-# )
 
 class Participant(models.Model):
     surname = models.CharField(max_length=50, verbose_name='Фамилия')
@@ -67,24 +63,6 @@ class Competition(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# class Judge(models.Model):
-#     surname = models.CharField(max_length=50, verbose_name='Фамилия')
-#     name = models.CharField(max_length=50, verbose_name='Имя')
-#     middlename = models.CharField(max_length=50, blank=True, verbose_name='Отчество')
-#     email = models.CharField(max_length=50, verbose_name='Почтовый адрес')
-#     user_type = models.CharField(
-#         max_length=50,
-#         choices=USER_TYPES,
-#         default='JUDGE',
-#         verbose_name='Тип пользователя'
-#     )
-#     competition = models.ManyToManyField(Competition, blank=True, verbose_name='Конкурсы, в которых он является судьей')
-
-#     class Meta:
-#     	verbose_name = 'Судья'
-#     	verbose_name_plural = 'Судьи'
 
 
 class Round(models.Model):
